@@ -1,0 +1,46 @@
+[parity]
+base_path = "./chain-data"
+chain = "goerli"
+no_persistent_txqueue = true
+keys_path = "./keys"
+
+[rpc]
+disable = false
+apis = ["all"]
+interface = "127.0.0.1"
+cors=["all"]
+hosts=["all"]
+processing_threads = 2
+
+[websockets]
+disable = false
+apis = ["all"]
+origins = ["all"]
+hosts = ["all"]
+interface = "127.0.0.1"
+
+[ipc]
+disable = true
+
+[ui]
+disable = false
+
+[network]
+discovery = true
+warp = false
+
+[mining]
+force_sealing = true
+reseal_on_txs = "none"
+min_gas_price = 1000000000
+gas_floor_target = "8700000"
+
+[footprint]
+tracing = "on"
+fat_db = "on"
+pruning = "archive"
+
+[misc]
+log_file = "./parity.log"
+# Logging pattern (`<module>=<level>`, e.g. `own_tx=trace`).
+logging = "own_tx,tx_queue=trace"
