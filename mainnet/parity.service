@@ -1,0 +1,21 @@
+[Unit]
+Description=Parity Mainnet Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/parity --config ./config/api.toml
+# To run as user, comment out above and uncomment below, fill in user and group
+# picks up users default config.toml in $HOME/.local/share/io.parity.ethereum/
+User=ubuntu
+Group=ubuntu
+# ExecStart=/usr/bin/parity
+Restart=on-failure
+WorkingDirectory=/home/ubuntu/parity-chain-configs/mainnet/
+# Specifies which signal to use when killing a service. Defaults to SIGTERM.
+# SIGHUP gives parity time to exit cleanly before SIGKILL (default 90s)
+KillSignal=SIGHUP
+Environment=RUST_BACKTRACE=1
+
+
+[Install]
+WantedBy=multi-user.target
