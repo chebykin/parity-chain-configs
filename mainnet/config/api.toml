@@ -1,8 +1,6 @@
 [parity]
 base_path = "./chain-data"
 no_persistent_txqueue = true
-keys_path = "./keys"
-light = true
 
 [rpc]
 disable = false
@@ -11,7 +9,7 @@ interface = "127.0.0.1"
 hosts = ["all"]
 cors=["all"]
 port = 8545
-processing_threads = 2
+processing_threads = 4
 
 [websockets]
 disable = false
@@ -35,12 +33,15 @@ warp = true
 force_sealing = true
 reseal_on_txs = "none"
 min_gas_price = 1000000000
-gas_floor_target = "8700000"
+gas_floor_target = "10000000"
 
 [footprint]
-fat_db = "on"
+fat_db = "off"
+scale_verifiers = true
+num_verifiers = 6
 
 [misc]
 log_file = "./parity.log"
 # Logging pattern (`<module>=<level>`, e.g. `own_tx=trace`).
-logging = "own_tx,tx_queue=trace"
+logging = "own_tx,tx_queue,rpc=trace"
+color = true
