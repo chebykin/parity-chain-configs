@@ -27,7 +27,13 @@ disable = true
 
 [network]
 discovery = true
-warp = true
+warp = false
+# When warp enabled never attempt regular sync before warping to block NUM.
+warp_barrier = 9000000
+# Parity will try to maintain connection to at least 50 peers.
+min_peers = 200
+# Parity will maintain at most 100 peers.
+max_peers = 400
 
 [mining]
 force_sealing = true
@@ -37,11 +43,22 @@ gas_floor_target = "10000000"
 
 [footprint]
 fat_db = "off"
+num_verifiers = 8
+# Number of threads will vary depending on the workload. Not guaranteed to be faster.
 scale_verifiers = true
-num_verifiers = 6
+# Prune old state data. Maintains journal overlay - fast but extra 50MB of memory used.
+pruning = "fast"
+# Will keep up to 4096MB data in Database cache.
+cache_size_db = 4096
+# Will keep up to 1024MB data in Blockchain cache.
+cache_size_blocks = 1024
+# Will keep up to 1024MB of blocks in block import queue.
+cache_size_queue = 1024
+# Will keep up to 1024MB data in State cache.
+cache_size_state = 1024
 
 [misc]
 log_file = "./parity.log"
 # Logging pattern (`<module>=<level>`, e.g. `own_tx=trace`).
-logging = "own_tx,tx_queue,rpc=trace"
+logging = "own_tx,tx_queue=trace"
 color = true
